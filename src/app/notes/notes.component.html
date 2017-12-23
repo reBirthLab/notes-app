@@ -1,10 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <a [routerLink]="['/viewSection', section]">{{section}}</a>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <textarea class="form-control" [(ngModel)]="text"></textarea>
+    </div>
+    <button class="btn btn-primary" (click)="add()">Add</button>
+  </div>
+</div>
+
 <ul>
   <li *ngFor="let note of notes; let i = index">
     {{note.text}}
     <button class="btn btn-default" (click)="remove(i)">remove</button>
   </li>
 </ul>
-<div class="input-group">
-  <textarea class="form-control" [(ngModel)]="text"></textarea>
-  <button class="btn btn-default" (click)="add()">Add</button>
-</div>

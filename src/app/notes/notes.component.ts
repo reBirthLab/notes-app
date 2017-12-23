@@ -1,6 +1,6 @@
 import { Component, OnChanges, Input } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { NotesServerService } from '../notes-server.service';
 
 @Component({
   selector: 'app-notes',
@@ -9,15 +9,13 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NotesComponent implements OnChanges {
 
-  private notesUrl = 'http://localhost:8080/notes';
-
   notes: Note[];
   text: string;
 
   @Input()
   section: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private notesServer: NotesServerService) {
   }
 
   ngOnChanges() {
@@ -38,14 +36,12 @@ export class NotesComponent implements OnChanges {
   }
 
   getNotes(): Observable<Note[]> {
-    let params: HttpParams = new HttpParams();
-    params = params.append('section', this.section);
-    return this.http.get<Note[]>(this.notesUrl, { params });
+    return this.notesServer.getNotes(this.section);
   }
 
 }
 
-interface Note {
+export interface Note {
   text: string;
   section: string;
 }
