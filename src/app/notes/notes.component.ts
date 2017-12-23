@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnChanges, Input } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -7,23 +7,27 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnChanges {
 
   private notesUrl = 'http://localhost:8080/notes';
 
   notes: Note[];
   text: string;
 
+  @Input()
+  section: string;
+
   constructor(private http: HttpClient) {
-    this.getNotes().subscribe(notes => this.notes = notes);
   }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.getNotes().subscribe(notes => this.notes = notes);
   }
 
   add() {
     let note: Note = {
-      text: this.text
+      text: this.text,
+      section: this.section
     }
     this.notes.push(note);
     this.text = "";
@@ -34,11 +38,14 @@ export class NotesComponent implements OnInit {
   }
 
   getNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.notesUrl);
+    let params: HttpParams = new HttpParams();
+    params = params.append('section', this.section);
+    return this.http.get<Note[]>(this.notesUrl, { params });
   }
 
 }
 
 interface Note {
   text: string;
+  section: string;
 }
