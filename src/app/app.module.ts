@@ -16,6 +16,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 
 import { NotesServerService } from './services/notes-server.service';
 import { CanDeactivateNoteService } from './services/can-deactivate-note.service';
+import { EqualToValidatorDirective } from './directives/equal-to-validator.directive';
+import { UserUniqueValidatorDirective } from './directives/user-unique-validator.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { CanDeactivateNoteService } from './services/can-deactivate-note.service
     NotesEditorComponent,
     PageNotFoundComponent,
     ViewSectionComponent,
-    UserFormComponent
+    UserFormComponent,
+    EqualToValidatorDirective,
+    UserUniqueValidatorDirective
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, AppRoutingModule
