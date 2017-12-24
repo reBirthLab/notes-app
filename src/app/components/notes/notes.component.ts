@@ -1,6 +1,7 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { NotesServerService } from '../notes-server.service';
+
+import { NotesServerService } from '../../services/notes-server.service';
 
 @Component({
   selector: 'app-notes',

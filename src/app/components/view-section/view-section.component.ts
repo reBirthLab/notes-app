@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NotesServerService } from '../notes-server.service';
-import { Note } from '../notes/notes.component';
 import { Observable } from 'rxjs/Observable';
+
+import { Note } from '../notes/notes.component';
+
+import { NotesServerService } from '../../services/notes-server.service';
 
 @Component({
   selector: 'app-view-section',

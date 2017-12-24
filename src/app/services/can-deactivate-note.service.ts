@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { NotesEditorComponent } from './notes-editor/notes-editor.component';
+
+import { NotesEditorComponent } from '../components/notes-editor/notes-editor.component';
 
 @Injectable()
 export class CanDeactivateNoteService implements CanDeactivate<NotesEditorComponent> {

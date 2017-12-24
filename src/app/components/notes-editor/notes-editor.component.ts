@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/map';
+
 import { NotesComponent } from '../notes/notes.component';
 
 @Component({
