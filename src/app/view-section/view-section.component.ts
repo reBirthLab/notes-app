@@ -13,12 +13,13 @@ export class ViewSectionComponent implements OnInit {
 
   section: string;
   notes: Note[];
+  notes$: Observable<Note[]>;
 
   constructor(private route: ActivatedRoute, private notesServer: NotesServerService) { }
 
   ngOnInit() {
     this.section = this.route.snapshot.params["name"];
-    this.getNotes().subscribe(notes => this.notes = notes);
+    this.notes$ = this.getNotes();
   }
 
   getNotes(): Observable<Note[]> {

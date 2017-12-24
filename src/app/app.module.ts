@@ -13,7 +13,7 @@ import { NotesEditorComponent } from './notes-editor/notes-editor.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ViewSectionComponent } from './view-section/view-section.component';
 import { NotesServerService } from './notes-server.service';
-
+import { CanDeactivateNoteService } from './can-deactivate-note.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { NotesServerService } from './notes-server.service';
   imports: [
     BrowserModule, FormsModule, HttpClientModule, AppRoutingModule
   ],
-  providers: [NotesServerService],
+  providers: [NotesServerService, CanDeactivateNoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
