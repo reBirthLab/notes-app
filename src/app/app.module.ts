@@ -18,6 +18,8 @@ import { NotesServerService } from './services/notes-server.service';
 import { CanDeactivateNoteService } from './services/can-deactivate-note.service';
 import { EqualToValidatorDirective } from './directives/equal-to-validator.directive';
 import { UserUniqueValidatorDirective } from './directives/user-unique-validator.directive';
+import { LoginService } from './services/login.service';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,13 @@ import { UserUniqueValidatorDirective } from './directives/user-unique-validator
     ViewSectionComponent,
     UserFormComponent,
     EqualToValidatorDirective,
-    UserUniqueValidatorDirective
+    UserUniqueValidatorDirective,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, AppRoutingModule
   ],
-  providers: [NotesServerService, CanDeactivateNoteService],
+  providers: [NotesServerService, CanDeactivateNoteService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

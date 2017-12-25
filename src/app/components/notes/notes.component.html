@@ -6,15 +6,18 @@
   </div>
   <div class="panel-body">
     <div class="form-group">
-      <textarea class="form-control" [(ngModel)]="text"></textarea>
+      <textarea style="min-width:100%;min-height:200px" class="form-control" [(ngModel)]="text"></textarea>
     </div>
     <button class="btn btn-primary" (click)="add()">Add</button>
   </div>
 </div>
 
-<ul>
-  <li *ngFor="let note of notes; let i = index">
-    {{note.text}}
-    <button class="btn btn-default" (click)="remove(i)">remove</button>
-  </li>
-</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">Notes</div>
+  <ul class="list-group">
+    <li *ngFor="let note of notes; let i = index" class="list-group-item">
+      {{note.text}}
+      <button class="btn btn-default" (click)="remove(i)">remove</button>
+    </li>
+  </ul>
+</div>

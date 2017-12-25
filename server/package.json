@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.15.3",
+    "body-parser": "1.17.1",
+    "cookie-session": "~1.2.0",
+    "express-session": "1.15.2",
+    "mongodb": "*",
+    "connect-mongo": "*"
+  }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-sections',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SectionsComponent implements OnInit {
 
-  private sectionUrl = 'http://localhost:8080/sections';
+  private sectionUrl = 'http://localhost:8080/api/sections';
   sections: Section[];
   activeSection: string;
 
@@ -23,8 +24,9 @@ export class SectionsComponent implements OnInit {
     }
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private loginService: LoginService) {
     this.readSections();
+    this.loginService.userLogin$.subscribe(user => this.readSections());
   }
 
   ngOnInit() {

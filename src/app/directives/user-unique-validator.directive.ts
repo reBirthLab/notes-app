@@ -10,7 +10,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class UserUniqueValidatorDirective implements Validator {
 
-  private userValidateUrl = 'http://localhost:8080/checkUserUnique';
+  private userValidateUrl = 'http://localhost:8080/api/checkUserUnique';
 
   validate(c: AbstractControl): Promise<{ [key: string]: any; }> {
     const user = c.value;

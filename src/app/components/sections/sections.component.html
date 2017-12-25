@@ -1,8 +1,9 @@
-<div class="input-group">
+<div class="input-group" style="padding-bottom:20px">
   <input type="text" class="form-control" placeholder="New section name" #newSection>
-  <button class="btn btn-default" type="button" (click)="addSection(newSection)">Add</button>
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" (click)="addSection(newSection)">Add</button>
+  </span>
 </div>
-
 
 <input type="text" class="form-control" placeholder="Section filter" #filter (keyup)="0">
 <ul class="list-group">

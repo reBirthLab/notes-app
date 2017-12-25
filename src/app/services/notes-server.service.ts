@@ -7,7 +7,7 @@ import { Note } from '../components/notes/notes.component';
 @Injectable()
 export class NotesServerService {
 
-  private notesUrl = 'http://localhost:8080/notes';
+  private notesUrl = 'http://localhost:8080/api/notes';
 
   constructor(private http: HttpClient) { }
 
