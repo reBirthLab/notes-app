@@ -15,7 +15,11 @@ app.use(session({
     }),
     secret: 'ang4_notes',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: false,
+        maxAge: 24 * 3600000
+    }
 }));
 
 var mongoClient = require("mongodb").MongoClient;
@@ -29,7 +33,7 @@ mongoClient.connect(dbConnectionUrl, function (err, dbase) {
     initDB();
 });
 
-//app.use(express.static("./public"));
+app.use(express.static("./public"));
 
 var initDB = function () {
     db.collection('users', function (error, users) {
@@ -103,7 +107,7 @@ app.post("/api/notes", function (req, res) {
 });
 
 app.get("/api/sections", function (req, res) {
-    console.log("#sections: " + JSON.stringify(req.session));
+    console.log("#sections:");
 
     var user = req.session.user;
 
@@ -178,12 +182,11 @@ app.post("/api/login", function (req, res, next) {
 
     db.users.find({})
         .toArray(function (err, users) {
-            for (var u in users) {
-                console.log(JSON.stringify(users));
+            for (var u in users) {  
                 if (username == users[u].name && password == users[u].password) {
-                    currentUser = users[u];               
+                    currentUser = users[u];
+                    req.session.user = currentUser;              
                     res.send(currentUser != null);
-                    req.session.user = currentUser;
                 }
             }
         });
@@ -193,6 +196,7 @@ app.get("/api/logout", function (req, res) {
     console.log("#logout");
 
     req.session.user = null;
+    req.session.destroy();
 
     res.end();
 });
@@ -202,10 +206,9 @@ app.get("/api/logout", function (req, res) {
 // in case when we use only this server, no angular-cli server
 // -----------------------------------------------------------
 //
-/* app.get("*", function (req, res, next) {
+app.get("*", function (req, res, next) {
     res.sendFile('index.html', { root: "./public" });
-}); */
-
+});
 
 app.listen(8080);
 
