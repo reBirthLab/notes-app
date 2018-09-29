@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class LoginService {
 
   private loginUrl = 'http://localhost:8080/api/login';
   private logoutUrl = 'http://localhost:8080/api/logout';
-  loggedIn: boolean = false;
+  loggedIn = false;
 
   private userLoginSource = new Subject<LoginUser>();
   userLogin$ = this.userLoginSource.asObservable();
@@ -18,7 +17,11 @@ export class LoginService {
 
   login(user: LoginUser) {
     return this.http.post(this.loginUrl, user)
-      .pipe(tap(res => { if (res) this.userLogin(user) }));
+      .pipe(tap(res => {
+        if (res) {
+          this.userLogin(user);
+        }
+      }));
   }
 
   logout() {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 import { NotesComponent } from '../notes/notes.component';
 
@@ -13,13 +13,13 @@ export class NotesEditorComponent implements OnInit {
 
   title = 'app';
   section: string;
-  
+
   @ViewChild(NotesComponent)
   notesComponent: NotesComponent;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.params
-      .map(params => params["name"])
+      .pipe(map(params => params['name']))
       .subscribe(section => this.section = section);
   }
 
@@ -27,7 +27,7 @@ export class NotesEditorComponent implements OnInit {
   }
 
   setSection(section: string) {
-    //this.section = section;
+    // this.section = section;
     this.router.navigate([section]);
   }
 

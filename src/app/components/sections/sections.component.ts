@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../../services/login.service';
 
@@ -34,18 +34,18 @@ export class SectionsComponent implements OnInit {
 
   addSection(newSection: HTMLInputElement) {
     const title = newSection.value.trim();
-    if (!title) return;
-    if (this.sections.map(s => s.title).find(t => t === title)) return;
+    if (!title) { return; }
+    if (this.sections.map(s => s.title).find(t => t === title)) { return; }
     const section: Section = { title };
     this.sections.unshift(section);
     this.showSection(section);
-    this.writeSections().subscribe(res => newSection.value = "");
+    this.writeSections().subscribe(res => newSection.value = '');
   }
 
   readSections() {
     this.getSections()
       .subscribe(sections => {
-        this.sections = sections
+        this.sections = sections;
         if (this.activeSection == null && this.sectionUrl.length > 0) {
           this.showSection(this.sections[0]);
         }
@@ -57,7 +57,7 @@ export class SectionsComponent implements OnInit {
   }
 
   showSection(section: Section) {
-    //this.activeSection = section.title;
+    // this.activeSection = section.title;
     this.sectionChanged.emit(section.title);
   }
 

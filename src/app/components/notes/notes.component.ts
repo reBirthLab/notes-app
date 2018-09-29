@@ -1,7 +1,8 @@
 import { Component, OnChanges, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { NotesServerService } from '../../services/notes-server.service';
+
 
 @Component({
   selector: 'app-notes',
@@ -24,16 +25,16 @@ export class NotesComponent implements OnChanges {
   }
 
   add() {
-    let note: Note = {
+    const note: Note = {
       text: this.text,
       section: this.section
-    }
+    };
     this.notes.push(note);
-    this.text = "";
+    this.text = '';
   }
 
   remove(idx) {
-    this.notes.splice(idx, 1)
+    this.notes.splice(idx, 1);
   }
 
   getNotes(): Observable<Note[]> {

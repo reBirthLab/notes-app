@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { NotesEditorComponent } from '../components/notes-editor/notes-editor.component';
 
@@ -13,7 +13,7 @@ export class CanDeactivateNoteService implements CanDeactivate<NotesEditorCompon
     const note = component.notesComponent.text;
     if (note && note.length > 0) {
       return window.confirm('You have entered the note. Do you really want to change section?');
-    } else return true;
+    } else { return true; }
   }
 
 }
